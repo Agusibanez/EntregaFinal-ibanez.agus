@@ -1,7 +1,7 @@
 export let products = [
   {
     id: "1",
-    tittle: "logitech alloy fps",
+    title: "logitech alloy fps",
     price: 59.99,
     description:
       "Teclado mecánico retroiluminado con switches Cherry MX, ideal para gaming.",
@@ -11,7 +11,7 @@ export let products = [
   },
   {
     id: "2",
-    tittle: "logitech G203",
+    title: "logitech G203",
     price: 29.99,
     description:
       "Ratón inalámbrico ergonómico con diseño contorneado para mayor comodidad durante largas horas de uso.",
@@ -21,7 +21,7 @@ export let products = [
   },
   {
     id: "3",
-    tittle: "Patriot Viper V570 Blackout",
+    title: "Patriot Viper V570 Blackout",
     price: 49.99,
     description:
       "Auriculares gaming con sonido envolvente y micrófono retráctil, ideal para comunicación durante el juego.",
@@ -31,7 +31,7 @@ export let products = [
   },
   {
     id: "4",
-    tittle: "Redragon Kumara K552",
+    title: "Redragon Kumara K552",
     price: 39.99,
     description:
       "Teclado ergonómico con reposamuñecas acolchado para mayor comodidad durante largas sesiones de escritura.",

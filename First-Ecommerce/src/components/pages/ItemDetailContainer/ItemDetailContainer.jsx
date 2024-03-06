@@ -13,7 +13,7 @@ export const ItemDetailContainer = () => {
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    getProduct(+id).then((resp) => {
+    getProduct(id).then((resp) => {
       setItem(resp);
       setIsLoading(false);
     });

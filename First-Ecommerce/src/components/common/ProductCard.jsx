@@ -16,7 +16,7 @@ export const ProductCard = ({ img, title, description, price, id }) => {
       <CardContent sx={{ height: 150 }}>
         <Typography
           gutterBottom
-          variant="h2"
+          variant="h6"
           component="div"
           textAlign={"center"}
         >

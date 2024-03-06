@@ -9,6 +9,7 @@ export const Navbar = () => {
         <Link to="/" style={{ color: "beige" }}>
           BlueBird
         </Link>
+
         <ul className="categories">
           <Link to="/">Todas</Link>
           <Link to="/category/Teclados">Teclados</Link>
