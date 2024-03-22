@@ -1,8 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { getProduct } from "../../../ProductsMock";
-import { useParams, useNavigate } from "react-router-dom";
+import { getProduct } from "../../../productsMock";
+import { useParams } from "react-router-dom";
 import { ItemDetail } from "./ItemDetail";
-import { CartContext } from "../../context/CartContext";
+import { CartContext } from "../../../context/CartContext";
+import { db } from "../../../fireBaseConfig";
+
+import { collection, doc, getDoc } from "firebase/firestore";
 
 export const ItemDetailContainer = () => {
   const { id } = useParams();
@@ -10,13 +13,20 @@ export const ItemDetailContainer = () => {
   const [item, setItem] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, getTotalQuantityById } = useContext(CartContext);
+
+  const initial = getTotalQuantityById(id);
 
   useEffect(() => {
-    getProduct(id).then((resp) => {
-      setItem(resp);
-      setIsLoading(false);
-    });
+    setIsLoading(true);
+
+    let productsCollection = collection(db, "products");
+    let refDoc = doc(productsCollection, id);
+    getDoc(refDoc)
+      .then((res) => {
+        setItem({ ...res.data(), id: res.id });
+      })
+      .finally(() => setIsLoading(false));
   }, [id]);
 
   const onAdd = (cantidad) => {
@@ -32,7 +42,7 @@ export const ItemDetailContainer = () => {
       {isLoading ? (
         <h2>Cargando producto...</h2>
       ) : (
-        <ItemDetail item={item} onAdd={onAdd} />
+        <ItemDetail item={item} onAdd={onAdd} initial={initial} />
       )}
     </>
   );

@@ -4,7 +4,7 @@ import { CartContainer } from "./components/pages/Cart/CartContainer";
 import { ItemDetailContainer } from "./components/pages/ItemDetailContainer/ItemDetailContainer";
 import { Layout } from "./components/layout/Layout";
 import { CheckoutContainer } from "./components/pages/CheckoutContainer/ChekoutContainer";
-import CartContextProvider from "./components/context/CartContext";
+import CartContextProvider from "./context/CartContext";
 
 const App = () => {
   return (

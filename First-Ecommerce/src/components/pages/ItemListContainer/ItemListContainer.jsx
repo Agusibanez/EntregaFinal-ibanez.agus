@@ -1,7 +1,9 @@
-import { getProducts } from "../../../ProductsMock";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./Itemlist";
+import "./ItemListContainer.css";
+import { db } from "../../../fireBaseConfig";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 const ItemListContainer = () => {
   const { category } = useParams();
@@ -9,19 +11,26 @@ const ItemListContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
-    getProducts().then((resp) => {
-      if (category) {
-        const productsFilter = resp.filter(
-          (product) => product.category === category
-        );
-        setProducts(productsFilter);
-      } else {
-        setProducts(resp);
-      }
+    let productsCollection = collection(db, "products");
 
-      setIsLoading(false);
-    });
+    let consulta = productsCollection;
+    if (category) {
+      let productsCollectionFiltered = query(
+        productsCollection,
+        where("category", "==", category)
+      );
+      consulta = productsCollectionFiltered;
+    }
+
+    getDocs(consulta)
+      .then((res) => {
+        let arrayLindo = res.docs.map((elemento) => {
+          return { ...elemento.data(), id: elemento.id };
+        });
+
+        setProducts(arrayLindo);
+      })
+      .finally(() => setIsLoading(false));
   }, [category]);
 
   return (
