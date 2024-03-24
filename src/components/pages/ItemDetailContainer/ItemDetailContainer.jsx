@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { getProduct } from "../../../productsMock";
 import { useParams } from "react-router-dom";
 import { ItemDetail } from "./ItemDetail";
 import { CartContext } from "../../../context/CartContext";
