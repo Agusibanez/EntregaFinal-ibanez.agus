@@ -3,7 +3,7 @@ import { getProduct } from "../../../productsMock";
 import { useParams } from "react-router-dom";
 import { ItemDetail } from "./ItemDetail";
 import { CartContext } from "../../../context/CartContext";
-import { db } from "../../../fireBaseConfig";
+import { db } from "../../../FireBaseConfig";
 
 import { collection, doc, getDoc } from "firebase/firestore";
 
